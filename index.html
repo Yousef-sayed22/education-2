@@ -179,56 +179,24 @@
                     <label for="grade">المرحلة الدراسية</label>
                     <select id="grade" required>
                         <option value="" disabled selected>اختر الصف الدراسي</option>
-                        <option value="الصف الثالث الابتدائي">الصف الثالث الابتدائي</option>
-                        <option value="الصف الرابع الابتدائي">الصف الرابع الابتدائي</option>
-                        <option value="الصف الخامس الابتدائي">الصف الخامس الابتدائي</option>
                         <option value="الصف السادس الابتدائي">الصف السادس الابتدائي</option>
                         <option value="الصف الأول الإعدادي">الصف الأول الإعدادي</option>
                         <option value="الصف الثاني الإعدادي">الصف الثاني الإعدادي</option>
                         <option value="الصف الثالث الإعدادي">الصف الثالث الإعدادي</option>
                         <option value="الصف الأول الثانوي">الصف الأول الثانوي</option>
-                        <option value="الصف الثاني الثانوي">الصف الثاني الثانوي</option>
                     </select>
                 </div>
+<div id="schedule-container" style="display:none;">
+    <label>اختر الموعد</label>
+    <select id="schedule">
+    </select>
+</div>
 
                 <div class="input-group">
                     <label for="phone">رقم التلفون (واتساب)</label>
                     <input type="tel" id="phone" placeholder="أدخل رقم تلفونك" required>
                 </div>
 
-                <div class="input-group">
-                    <label for="city">المحافظة</label>
-                    <select id="city" required>
-                        <option value="" disabled selected>اختر المحافظة</option>
-                        <option value="القاهرة">القاهرة</option>
-                        <option value="الجيزة">الجيزة</option>
-                        <option value="الإسكندرية">الإسكندرية</option>
-                        <option value="الدقهلية">الدقهلية</option>
-                        <option value="الشرقية">الشرقية</option>
-                        <option value="القليوبية">القليوبية</option>
-                        <option value="الغربية">الغربية</option>
-                        <option value="المنوفية">المنوفية</option>
-                        <option value="البحيرة">البحيرة</option>
-<option value="كفر الشيخ">كفر الشيخ</option>
-                        <option value="الفيوم">الفيوم</option>
-                        <option value="بني سويف">بني سويف</option>
-                        <option value="المنيا">المنيا</option>
-                        <option value="أسيوط">أسيوط</option>
-                        <option value="سوهاج">سوهاج</option>
-                        <option value="قنا">قنا</option>
-                        <option value="أسوان">أسوان</option>
-                        <option value="الأقصر">الأقصر</option>
-                        <option value="البحر الأحمر">البحر الأحمر</option>
-                        <option value="الوادي الجديد">الوادي الجديد</option>
-                        <option value="مطروح">مطروح</option>
-                        <option value="شمال سيناء">شمال سيناء</option>
-                        <option value="جنوب سيناء">جنوب سيناء</option>
-                        <option value="السويس">السويس</option>
-                        <option value="الإسماعيلية">الإسماعيلية</option>
-                        <option value="بورسعيد">بورسعيد</option>
-                        <option value="دمياط">دمياط</option>
-                    </select>
-                </div>
 
                 <button type="submit" class="submit-btn">
                     تأكيد وإرسال الحجز الان <i class="fa-solid fa-paper-plane"></i>
@@ -238,6 +206,51 @@
     </div>
 
     <script>
+
+    const schedules = {
+    "الصف الثالث الابتدائي": [
+        "السبت 5 مساءً",
+        "الاثنين 5 مساءً",
+        "الأربعاء 6 مساءً"
+    ],
+
+    "الصف الرابع الابتدائي": [
+        "الأحد 4 مساءً",
+        "الثلاثاء 6 مساءً"
+    ]
+};
+
+document.getElementById("grade").addEventListener("change", function(){
+
+    let selectedGrade = this.value;
+
+    let scheduleBox = document.getElementById("schedule-container");
+    let scheduleSelect = document.getElementById("schedule");
+
+    scheduleSelect.innerHTML = "";
+
+    if(schedules[selectedGrade]){
+
+        scheduleBox.style.display = "block";
+
+        schedules[selectedGrade].forEach(function(time){
+
+            let option = document.createElement("option");
+            option.textContent = time;
+            option.value = time;
+
+            scheduleSelect.appendChild(option);
+
+        });
+
+    } else {
+
+        scheduleBox.style.display = "none";
+
+    }
+
+});
+        
         function sendToWhatsApp(event) {
             event.preventDefault();
 
@@ -245,7 +258,7 @@
             let grade = document.getElementById('grade').value;
             let phone = document.getElementById('phone').value;
             let city = document.getElementById('city').value;
-
+            let schedule = document.getElementById('schedule').value;
             let myWhatsAppNumber = "201001215256";  
 let message = `مرحباً أستاذ سيد، أود تأكيد الحجز:
 
@@ -253,7 +266,7 @@ let message = `مرحباً أستاذ سيد، أود تأكيد الحجز:
 📚 المرحلة: ${grade}
 📱 التلفون: ${phone}
 📍 المحافظة: ${city}`;
-
+⏰ الموعد: ${schedule}
 let url = `https://wa.me/${myWhatsAppNumber}?text=${encodeURIComponent(message)}`;
             window.open(url, '_blank');
         }
