@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة أ/ سيد ماهر</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .main-container {
+            display: flex;
+            flex-wrap: wrap;
+            background: #ffffff;
+            width: 100%;
+            max-width: 950px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        /* النصف الأيمن: صورتك وروابط التواصل */
+        .profile-section {
+            flex: 1;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 40px 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .profile-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            border: 4px solid white;
+            object-fit: cover;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .profile-section h2 {
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+        .profile-section p {
+            font-size: 14px;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .social-icons a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 45px;
+            height: 45px;
+            background: white;
+            color: #2a5298;
+            border-radius: 50%;
+            font-size: 20px;
+            text-decoration: none;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .social-icons a:hover {
+            transform: translateY(-4px);
+            background: #ffcc00;
+            color: #1e3c72;
+        }
+
+        /* النصف الأيسر: الاستمارة */
+        .form-section {
+            flex: 1.2;
+            padding: 30px;
+        }
+        .form-section h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 20px;
+            text-align: center;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #444;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: 0.3s;
+        }
+        .input-group input:focus, .input-group select:focus {
+            border-color: #2a5298;
+            box-shadow: 0 0 5px rgba(42, 82, 152, 0.3);
+        }
+        .submit-btn {
+            width: 100%;
+            background: #2a5298;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .submit-btn:hover {
+            background: #1e3c72;
+        }
+/* للتجاوب مع الهواتف */
+        @media(max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <!-- النصف الأيمن: صورتك الشخصية وروابط التواصل -->
+        <div class="profile-section">
+            <img src="pic/pic1.jpg" alt="أ/ سيد ماهر" class="profile-img">
+            <h2>أ/ سيد ماهر</h2>
+            <p>معلم الرياضيات</p>
+            
+            <div class="social-icons">
+                <!-- فيسبوك -->
+                <a href="https://www.facebook.com/share/1Bd66U5Mwb/" target="_blank" title="فيسبوك"><i class="fa-brands fa-facebook-f"></i></a>
+                <!-- يوتيوب -->
+                <a href="https://www.youtube.com/@mathonlinesayedmaher818" target="_blank" title="يوتيوب"><i class="fa-brands fa-youtube"></i></a>
+                <!-- تليجرام -->
+                <a href="https://t.me/+201001215256" target="_blank" title="تليجرام"><i class="fa-brands fa-telegram"></i></a>
+                <!-- واتساب -->
+                <a href="https://wa.me/201001215256" target="_blank" title="واتساب"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+        </div>
+
+        <!-- النصف الأيسر: استمارة الحجز -->
+        <div class="form-section">
+            <h3>استمارة الحجز الإلكتروني</h3>
+            <form id="bookingForm" onsubmit="sendToWhatsApp(event)">
+                <div class="input-group">
+                    <label for="fullname">الاسم الثلاثي</label>
+                    <input type="text" id="fullname" placeholder="أدخل اسمك هنا" required>
+                </div>
+
+                <div class="input-group" id ="selectGrade">
+                    <label for="grade">المرحلة الدراسية</label>
+                    <select id="grade" required>
+                        <option value="" disabled selected>اختر الصف الدراسي</option>
+                        <option value="الصف السادس الابتدائي">الصف السادس الابتدائي</option>
+                        <option value="الصف الأول الإعدادي">الصف الأول الإعدادي</option>
+                        <option value="الصف الثاني الإعدادي">الصف الثاني الإعدادي</option>
+                        <option value="الصف الثالث الإعدادي">الصف الثالث الإعدادي</option>
+                    </select>
+                </div>
+<div id="schedule-container" class="input-group" style="display:none;">
+    <label>اختر الموعد</label>
+    <select id="schedule" required>
+<option value="" disabled selected>اختر المعاد </option>
+    </select>
+</div>
+
+                <div class="input-group">
+                    <label for="phone">رقم التلفون (واتساب)</label>
+                    <input type="tel" id="phone" placeholder="أدخل رقم تلفونك" required>
+                </div>
+
+
+                <button type="submit" class="submit-btn">
+                    تأكيد وإرسال الحجز الان <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+ <script>
+
+const schedules = {
+    "الصف الثالث الإعدادي": [
+        " المجموعة (1) | السبت | مدرسة القومية | 10:00 ص",
+        "المجموعة (2) | السبت | سنتر رويال | 4:00 م",
+        "المجموعة (3) | الأربعاء | سنتر رويال | 4:00 م"
+    ],
+
+    "الصف الأول الإعدادي": [
+      "المجموعة (1) | الأحد | مدرسة القومية | 2:30 م",
+       "المجموعة (2) | الثلاثاء | سنتر رويال | 2:30 م"
+    ],
+
+
+    "الصف الثاني الإعدادي": [
+        "المجموعة (1) | السبت | سنتر رويال | 2:00 م",
+        "المجموعة (2) | الاثنين | مدرسة القومية | 2:30 م",
+	 "المجموعة (3) | الخميس | سنتر رويال | 2:30 م"
+    ],
+
+    "الصف السادس الابتدائي": [
+        "المجموعة (1) | الاريعاء| مدرسة القومية  | 2:00 م"
+    ]
+};
+
+
+// إظهار المواعيد حسب الصف المختار
+document.getElementById("grade").addEventListener("change", function(){
+
+    let selectedGrade = this.value;
+
+    let scheduleBox = document.getElementById("schedule-container");
+    let scheduleSelect = document.getElementById("schedule");
+
+    scheduleSelect.innerHTML = '<option value="" disabled selected>اختر المعاد</option>';
+
+    if(schedules[selectedGrade]){
+
+        scheduleBox.style.display = "block";
+
+        schedules[selectedGrade].forEach(function(time){
+
+            let option = document.createElement("option");
+
+            option.textContent = time;
+            option.value = time;
+
+            scheduleSelect.appendChild(option);
+
+        });
+
+    } else {
+
+        scheduleBox.style.display = "none";
+
+    }
+
+});
+
+
+// إرسال البيانات إلى Google Sheets عبر Google Apps Script
+function sendToWhatsApp(event) {
+
+    event.preventDefault();
+
+    let name = document.getElementById('fullname').value;
+    let grade = document.getElementById('grade').value;
+    let phone = document.getElementById('phone').value;
+    let schedule = document.getElementById('schedule').value;
+
+    let scriptURL = "https://script.google.com/macros/s/AKfycby9SRTwOSDOIdVX3tEvoHhMPrZm25hqwQw50WqIO2Mw-_iMJX_zVtiAlkdKzSDMnX_v/exec";
+
+    let submitBtn = document.querySelector('.submit-btn');
+    let originalBtnText = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = "جاري الإرسال...";
+
+    fetch(scriptURL, {
+    method: "POST",
+    body: JSON.stringify({
+        fullname: name,
+        grade: grade,
+        schedule: schedule,
+        phone: phone
+    })
+})
+    .then(function(response) {
+        alert("تم تسجيل الحجز بنجاح");
+
+        document.getElementById('bookingForm').reset();
+
+        let scheduleBox = document.getElementById("schedule-container");
+        let scheduleSelect = document.getElementById("schedule");
+        scheduleSelect.innerHTML = '<option value="" disabled selected>اختر المعاد</option>';
+        scheduleBox.style.display = "none";
+    })
+    .catch(function(error) {
+        console.error("Error : " , error) ;
+        alert(error.message) ;
+    })
+    .finally(function() {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+    });
+
+}
+
+</script>
+</body>
+</html>
