@@ -312,6 +312,35 @@ function sendToWhatsApp(event) {
     });
 
 }
+	 
+// إرسال الواتساب
+function sendToWhatsApp(event) {
+
+    event.preventDefault();
+
+    let name = document.getElementById('fullname').value;
+    let grade = document.getElementById('grade').value;
+    let phone = document.getElementById('phone').value;
+    let schedule = document.getElementById('schedule').value;
+
+
+    let myWhatsAppNumber = "201001215256";
+
+
+    let message = `مرحباً أستاذ سيد، أود تأكيد الحجز:
+
+👤 الاسم: ${name}
+📚 المرحلة: ${grade}
+📱 تلفون الطالب: ${phone}
+⏰ الموعد: ${schedule}`;
+
+
+    let url = `https://wa.me/${myWhatsAppNumber}?text=${encodeURIComponent(message)}`;
+
+    window.open(url, "_blank");
+
+}
+
 
 </script>
 </body>
